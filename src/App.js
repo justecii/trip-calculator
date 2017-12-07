@@ -16,43 +16,68 @@ class App extends Component {
       paidOne: 0,
       paidTwo: 0,
       paidThree: 0,
-      owesOne: 0,
-      owesThree: 0
+      totalPaid: 0
     }
     this.userOneProps = this.userOneProps.bind(this);
+    this.userTwoProps = this.userTwoProps.bind(this);
+    this.userThreeProps = this.userThreeProps.bind(this);
   }
+  // get children props
   userOneProps(name, value){
     this.setState({
       nameOne: name,
       paidOne: value
     })
+    // var totalExpenses = (parseFloat(this.state.paidOne) + parseFloat(this.state.paidTwo) + parseFloat(this.state.paidThree)).toFixed(2);
+    // this.setState({
+    //   totalPaid: totalExpenses
+    // })
+    console.log(this.state)
   }
+  userTwoProps(name, value) {
+    this.setState({
+      nameTwo: name,
+      paidTwo: value
+    })
+  }
+  userThreeProps(name, value) {
+    this.setState({
+      nameThree: name,
+      paidThree: value
+    })
+  }
+
   onClick(e){
     e.preventDefault(e);
     console.log(this.state)
   }
+
   render() {
     return (
       <div className="App">
-        <h1>Trip Calculator</h1>
+        <h2>Trip Calculator</h2>
         {/* Using React-materialize to make components responsive, but also inline for larger screens */}
         <Row>
           <Col s={12} m={4}>
             <UserOne userOneProps={this.userOneProps}/>
           </Col>
           <Col s={12} m={4}>
-            <UserTwo />
+            <UserTwo userTwoProps={this.userTwoProps}/>
           </Col>
           <Col s={12} m={4}>
-            <UserThree />
+            <UserThree userThreeProps={this.userThreeProps} />
           </Col>
         </Row>
-        <Button onClick={(e) => this.onClick(e)}> Get Props </Button>
-        <Row>
-          <Col s={12}>
-            <Tally />
-          </Col>
-        </Row>
+        <Button onClick={(e) => this.onClick(e)}> Calculate </Button>
+        <Tally 
+          nameOne={this.state.nameOne} 
+          nameTwo={this.state.nameTwo}
+          nameThree={this.state.nameThree}
+          paidOne={this.state.paidOne}
+          paidTwo={this.state.paidTwo}
+          paidThree={this.state.paidThree}
+          totalPaid={this.state.totalPaid}
+          />
       </div>
     );
   }
