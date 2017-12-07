@@ -6,12 +6,11 @@ class UserOne extends Component {
         super(props)
         this.state ={
             name: '',
-            valueOne: 1,
+            valueOne: 0,
             valueTwo: 0,
             valueThree: 0,
             valueFour: 0,
             valueFive: 0,
-            totalValue: 0,
         }
     }
     // give user a name to send to parent components
@@ -57,12 +56,7 @@ class UserOne extends Component {
     onClick(e){
         e.preventDefault();
         var expenseSum = (parseFloat(this.state.valueOne) + parseFloat(this.state.valueTwo) + parseFloat(this.state.valueThree) + parseFloat(this.state.valueFour) + parseFloat(this.state.valueFive)).toFixed(2);
-        this.setState({
-            totalValue: expenseSum
-        });
-        console.log(this.state);
-        console.log(this.state.valueOne);
-        console.log(expenseSum);
+        this.props.userOneProps(this.state.name, expenseSum);
     }
     render(){
         return (
