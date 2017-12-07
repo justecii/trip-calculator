@@ -5,20 +5,63 @@ class Tally extends Component {
     constructor(props){
         super(props)
         this.state={
-            totalValue: 0
+            highPayer: '',
+            oneOwes: 0,
+            twoOwes: 0,
+            threeOwes: 0
         }
         this.componentDidUpdate = this.componentDidUpdate.bind(this);
     }
     componentDidUpdate(){
-        let total = (parseFloat(this.props.paidOne) + parseFloat(this.props.paidTwo))
-        console.log(total)
-        // if (this.props.paidOne !== total) {
-        //     this.setState({
-        //         totalValue: total
-        //     })
-        // }
+        console.log(this.props)
+        if (this.state.highPayer === "") {
+            if (this.props.paidOne > this.props.paidTwo && this.props.paidOne > this.props.paidThree) {
+                this.setState({
+                    highPayer: this.props.nameOne
+                })
+            } else if (this.props.paidTwo > this.props.paidOne && this.props.paidTwo > this.props.paidThree){
+                this.setState({
+                    highPayer: this.props.nameTwo
+                })
+            } else if (this.props.paidThree > this.props.paidTwo && this.props.paidThree > this.props.paidOne){
+                this.setState({
+                    highPayer: this.props.nameThree
+                })
+            }
+        } else if (this.state.highPayer === this.props.nameOne){
+            if (this.props.paidTwo > this.props.paidOne && this.props.paidTwo > this.props.paidThree) {
+                this.setState({
+                    highPayer: this.props.nameTwo
+                })
+            } else if (this.props.paidThree > this.props.paidTwo && this.props.paidThree > this.props.paidOne) {
+                this.setState({
+                    highPayer: this.props.nameThree
+                })
+            }
+        } else if (this.state.highPayer === this.props.nameTwo){
+            if (this.props.paidOne > this.props.paidTwo && this.props.paidOne > this.props.paidThree) {
+                this.setState({
+                    highPayer: this.props.nameOne
+                })
+            } else if (this.props.paidThree > this.props.paidTwo && this.props.paidThree > this.props.paidOne) {
+                this.setState({
+                    highPayer: this.props.nameThree
+                })
+            }
+        } else if (this.state.highPayer === this.props.nameThree) {
+            if (this.props.paidTwo > this.props.paidOne && this.props.paidTwo > this.props.paidThree) {
+                this.setState({
+                    highPayer: this.props.nameTwo
+                })
+            } else if (this.props.paidOne > this.props.paidTwo && this.props.paidOne > this.props.paidThree) {
+                this.setState({
+                    highPayer: this.props.nameOne
+                })
+            }
+        }
         
     }
+    
     render(){
         return (
             <div>
@@ -28,6 +71,12 @@ class Tally extends Component {
                     </Col>
                     <Col s={6} m={3}>
                         <p>{this.props.totalPaid}</p>
+                    </Col>
+                    <Col s={6} m={3}>
+                        <h4>Average:</h4>
+                    </Col>
+                    <Col s={6} m={3}>
+                        <p>{this.props.average}</p>
                     </Col>
                 </Row>
                 <table>
@@ -47,7 +96,7 @@ class Tally extends Component {
                         <tr>
                             <td>{this.props.nameTwo}</td>
                             <td>{this.props.paidTwo}</td>
-                            <td>Number</td>
+                            <td>${(this.props.average - this.props.paidTwo).toFixed(2)}  to {this.state.highPayer}</td>
                         </tr>
                         <tr>
                             <td>{this.props.nameThree}</td>

@@ -16,7 +16,8 @@ class App extends Component {
       paidOne: 0,
       paidTwo: 0,
       paidThree: 0,
-      totalPaid: 0
+      totalPaid: 0,
+      average: 0
     }
     this.userOneProps = this.userOneProps.bind(this);
     this.userTwoProps = this.userTwoProps.bind(this);
@@ -49,6 +50,10 @@ class App extends Component {
 
   onClick(e){
     e.preventDefault(e);
+    this.setState({
+      totalPaid: (parseFloat(this.state.paidOne) + parseFloat(this.state.paidTwo) + parseFloat(this.state.paidThree)).toFixed(2),
+      average: ((parseFloat(this.state.paidOne) + parseFloat(this.state.paidTwo) + parseFloat(this.state.paidThree))/3).toFixed(2)
+    })
     console.log(this.state)
   }
 
@@ -77,6 +82,7 @@ class App extends Component {
           paidTwo={this.state.paidTwo}
           paidThree={this.state.paidThree}
           totalPaid={this.state.totalPaid}
+          average={this.state.average}
           />
       </div>
     );
