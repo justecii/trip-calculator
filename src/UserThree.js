@@ -65,15 +65,15 @@ class UserThree extends Component {
                 <Row>
                     <Input s={6} label="Name" onInput={(e) => this.submitName(e)} />
                     <Input s={9} label="Expense" />
-                    <Input s={3} label="Total" onInput={(e) => this.expenseOne(e)} />
+                    <Input s={3} label="Total" type="number" onInput={(e) => this.expenseOne(e)} />
                     <Input s={9} label="Expense" />
-                    <Input s={3} label="Total" onInput={(e) => this.expenseTwo(e)} />
+                    <Input s={3} label="Total" type="number" onInput={(e) => this.expenseTwo(e)} />
                     <Input s={9} label="Expense" />
-                    <Input s={3} label="Total" onInput={(e) => this.expenseThree(e)} />
+                    <Input s={3} label="Total" type="number" onInput={(e) => this.expenseThree(e)} />
                     <Input s={9} label="Expense" />
-                    <Input s={3} label="Total" onInput={(e) => this.expenseFour(e)} />
+                    <Input s={3} label="Total" type="number" onInput={(e) => this.expenseFour(e)} />
                     <Input s={9} label="Expense" />
-                    <Input s={3} label="Total" onInput={(e) => this.expenseFive(e)} />
+                    <Input s={3} label="Total" type="number" onInput={(e) => this.expenseFive(e)} />
                 </Row>
                 <Button className="submitBtn" s={12} onClick={(e) => this.onClick(e)}>Submit</Button>
             </div>

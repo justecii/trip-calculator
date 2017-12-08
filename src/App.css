@@ -1,6 +1,7 @@
 .App {
     text-align: center;
     color: #1c1c1c;
+    font-family: "Oswald", sans-serif;
 }
 
 h2 {
@@ -22,6 +23,7 @@ h4 {
 
 table {
     width: 80%;
+    margin: 0 auto;
 }
 
 
@@ -39,7 +41,7 @@ table {
 
 .calc {
     background-color: #76ac26 !important;
-    margin-top: 1rem !important;
+    margin-top: 1.5rem !important;
     font-size: 2rem;
 }
 

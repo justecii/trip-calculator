@@ -46,11 +46,13 @@ class App extends Component {
   // Calculates the total bill and each persons share after children props have been recieved
   onClick(e){
     e.preventDefault(e);
-    this.setState({
-      totalPaid: (parseFloat(this.state.paidOne) + parseFloat(this.state.paidTwo) + parseFloat(this.state.paidThree)).toFixed(2),
-      average: ((parseFloat(this.state.paidOne) + parseFloat(this.state.paidTwo) + parseFloat(this.state.paidThree))/3).toFixed(2),
-      isPressed: true
-    })
+    if (this.state.nameOne !== '' && this.state.nameTwo !== '' && this.state.nameThree !== '') {
+      this.setState({
+        totalPaid: (parseFloat(this.state.paidOne) + parseFloat(this.state.paidTwo) + parseFloat(this.state.paidThree)).toFixed(2),
+        average: ((parseFloat(this.state.paidOne) + parseFloat(this.state.paidTwo) + parseFloat(this.state.paidThree)) / 3).toFixed(2),
+        isPressed: true
+      })
+    } 
   }
 
   render() {
