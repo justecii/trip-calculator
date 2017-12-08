@@ -17,7 +17,8 @@ class App extends Component {
       paidTwo: 0,
       paidThree: 0,
       totalPaid: 0,
-      average: 0
+      average: 0,
+      isPressed: false
     }
     this.userOneProps = this.userOneProps.bind(this);
     this.userTwoProps = this.userTwoProps.bind(this);
@@ -29,11 +30,6 @@ class App extends Component {
       nameOne: name,
       paidOne: value
     })
-    // var totalExpenses = (parseFloat(this.state.paidOne) + parseFloat(this.state.paidTwo) + parseFloat(this.state.paidThree)).toFixed(2);
-    // this.setState({
-    //   totalPaid: totalExpenses
-    // })
-    console.log(this.state)
   }
   userTwoProps(name, value) {
     this.setState({
@@ -47,20 +43,27 @@ class App extends Component {
       paidThree: value
     })
   }
-
+  // Calculates the total bill and each persons share after children props have been recieved
   onClick(e){
     e.preventDefault(e);
     this.setState({
       totalPaid: (parseFloat(this.state.paidOne) + parseFloat(this.state.paidTwo) + parseFloat(this.state.paidThree)).toFixed(2),
-      average: ((parseFloat(this.state.paidOne) + parseFloat(this.state.paidTwo) + parseFloat(this.state.paidThree))/3).toFixed(2)
+      average: ((parseFloat(this.state.paidOne) + parseFloat(this.state.paidTwo) + parseFloat(this.state.paidThree))/3).toFixed(2),
+      isPressed: true
     })
-    console.log(this.state)
   }
 
   render() {
     return (
       <div className="App">
-        <h2>Trip Calculator</h2>
+        <Row>
+          <Col s={12} m={6}>
+            <h2>Trip Calculator</h2>
+          </Col>
+          <Col s={12} m={6}>
+            <Button className="calc" onClick={(e) => this.onClick(e)}> Calculate Dues</Button>
+          </Col>
+        </Row>
         {/* Using React-materialize to make components responsive, but also inline for larger screens */}
         <Row>
           <Col s={12} m={4}>
@@ -73,16 +76,16 @@ class App extends Component {
             <UserThree userThreeProps={this.userThreeProps} />
           </Col>
         </Row>
-        <Button onClick={(e) => this.onClick(e)}> Calculate </Button>
         <Tally 
           nameOne={this.state.nameOne} 
           nameTwo={this.state.nameTwo}
           nameThree={this.state.nameThree}
-          paidOne={this.state.paidOne}
-          paidTwo={this.state.paidTwo}
-          paidThree={this.state.paidThree}
-          totalPaid={this.state.totalPaid}
-          average={this.state.average}
+          paidOne={parseFloat(this.state.paidOne)}
+          paidTwo={parseFloat(this.state.paidTwo)}
+          paidThree={parseFloat(this.state.paidThree)}
+          totalPaid={parseFloat(this.state.totalPaid)}
+          average={parseFloat(this.state.average)}
+          isPressed={this.state.isPressed}
           />
       </div>
     );
